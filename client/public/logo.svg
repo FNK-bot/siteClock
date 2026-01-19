@@ -1,0 +1,37 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="#facc15"/>
+  
+  <!-- Clock Circle -->
+  <circle cx="256" cy="256" r="180" fill="#000000"/>
+  <circle cx="256" cy="256" r="170" fill="#facc15"/>
+  <circle cx="256" cy="256" r="160" fill="#000000"/>
+  
+  <!-- Clock Center -->
+  <circle cx="256" cy="256" r="15" fill="#facc15"/>
+  
+  <!-- Hour Hand (pointing to 10) -->
+  <rect x="250" y="136" width="12" height="120" rx="6" fill="#facc15" transform="rotate(-60 256 256)"/>
+  
+  <!-- Minute Hand (pointing to 2) -->
+  <rect x="253" y="106" width="6" height="150" rx="3" fill="#facc15" transform="rotate(60 256 256)"/>
+  
+  <!-- Clock Markers -->
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(30 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(60 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(90 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(120 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(150 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(180 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(210 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(240 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(270 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(300 256 256)"/>
+  <rect x="250" y="96" width="12" height="30" rx="6" fill="#facc15" transform="rotate(330 256 256)"/>
+  
+  <!-- Hard Hat Icon (construction element) -->
+  <path d="M 180 400 L 180 380 Q 180 360 200 360 L 312 360 Q 332 360 332 380 L 332 400 Z" fill="#facc15"/>
+  <rect x="170" y="400" width="172" height="20" rx="10" fill="#000000"/>
+  <rect x="175" y="405" width="162" height="10" rx="5" fill="#facc15"/>
+</svg>
