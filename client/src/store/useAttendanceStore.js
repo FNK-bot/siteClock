@@ -2,8 +2,9 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import axios from 'axios';
 import useAuthStore from './useAuthStore';
+import { API_BASE_URL } from '../config';
 
-const API_URL = 'http://localhost:5000/api/attendance';
+const API_URL = `${API_BASE_URL}/api/attendance`;
 
 const useAttendanceStore = create(
     persist(

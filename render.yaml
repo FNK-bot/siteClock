@@ -1,0 +1,44 @@
+services:
+  # --------------------------------------------------------------------------------
+  # BACKEND SERVICE (Node.js/Express)
+  # --------------------------------------------------------------------------------
+  - type: web
+    name: site-clock-server
+    env: node
+    root: server
+    buildCommand: npm install
+    startCommand: node server.js
+    plan: free
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false # You will be asked to enter this value in the Render Dashboard
+      - key: JWT_SECRET
+        generateValue: true # Generates a secure random string automatically
+      - key: ADMIN_EMAIL
+        value: admin@siteclock.com
+      - key: ADMIN_PASSWORD
+        sync: false # You will be asked to enter this value in the Render Dashboard
+
+  # --------------------------------------------------------------------------------
+  # FRONTEND SERVICE (React/Vite)
+  # --------------------------------------------------------------------------------
+  - type: static
+    name: site-clock-client
+    env: static
+    root: client
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    routes:
+      # This rule is required for React Router (SPA) to work correctly
+      - type: rewrite
+        source: /**
+        destination: /index.html
+    envVars:
+      # Automatically links the Server URL to the Client
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: site-clock-server
+          property: url

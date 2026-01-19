@@ -15,8 +15,9 @@ import {
 import axios from 'axios';
 import TaskCard from '../components/TaskCard';
 import { format } from 'date-fns';
+import { API_BASE_URL } from '../config';
 
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = `${API_BASE_URL}/api/tasks`;
 
 const StatsCard = ({ title, value, icon: Icon, color }) => (
     <div className="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4">

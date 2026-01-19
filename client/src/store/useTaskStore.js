@@ -1,8 +1,9 @@
 import { create } from 'zustand';
 import axios from 'axios';
 import useAuthStore from './useAuthStore';
+import { API_BASE_URL } from '../config';
 
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = `${API_BASE_URL}/api/tasks`;
 
 const useTaskStore = create((set) => ({
     tasks: [],

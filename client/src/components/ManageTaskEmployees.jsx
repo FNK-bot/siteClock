@@ -47,7 +47,7 @@ const ManageTaskEmployees = ({ task, onClose, onUpdate }) => {
 
             const employeeIds = selectedEmployees.map(e => e._id);
             const response = await axios.put(
-                `http://localhost:5000/api/tasks/${task._id}/employees/add`,
+                `${API_BASE_URL}/api/tasks/${task._id}/employees/add`,
                 { employeeIds },
                 config
             );
@@ -188,8 +188,8 @@ const ManageTaskEmployees = ({ task, onClose, onUpdate }) => {
                                                 key={employee._id}
                                                 onClick={() => toggleEmployee(employee)}
                                                 className={`flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-colors ${isSelected
-                                                        ? 'bg-blue-50 hover:bg-blue-100'
-                                                        : 'hover:bg-gray-50'
+                                                    ? 'bg-blue-50 hover:bg-blue-100'
+                                                    : 'hover:bg-gray-50'
                                                     }`}
                                             >
                                                 <div className="flex items-center gap-3">

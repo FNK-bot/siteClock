@@ -3,6 +3,7 @@ import useAuthStore from '../store/useAuthStore';
 import { X, Clock, CheckCircle, XCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import axios from 'axios';
 import { format } from 'date-fns';
+import { API_BASE_URL } from '../config';
 
 const TaskAttendanceModal = ({ task, onClose }) => {
     const { user } = useAuthStore();
@@ -18,7 +19,7 @@ const TaskAttendanceModal = ({ task, onClose }) => {
                 headers: { Authorization: `Bearer ${user.token}` }
             };
             const response = await axios.get(
-                `http://localhost:5000/api/tasks/${task._id}/attendance`,
+                `${API_BASE_URL}/api/tasks/${task._id}/attendance`,
                 config
             );
             setData(response.data);
