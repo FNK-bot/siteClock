@@ -17,6 +17,17 @@ app.use('/api/tasks', require('./routes/tasks'));
 app.use('/api/attendance', require('./routes/attendance'));
 app.use('/api/analytics', require('./routes/analytics'));
 
+// Serve static assets in production
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+    // Check if the request is not an API request
+    if (!req.path.startsWith('/api')) {
+        res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    }
+});
+
 const createAdminAccount = async () => {
     try {
         const adminEmail = process.env.ADMIN_EMAIL;

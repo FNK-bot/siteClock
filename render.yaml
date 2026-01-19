@@ -1,44 +1,41 @@
 services:
   # --------------------------------------------------------------------------------
-  # BACKEND SERVICE (Node.js/Express)
+  # MONOLITH SERVICE (Node.js serving React)
   # --------------------------------------------------------------------------------
   - type: web
-    name: site-clock-server
+    name: site-clock-service
     env: node
-    root: server
-    buildCommand: npm install
-    startCommand: node server.js
+    root: .  # Set root to repo base to access both client and server during build
+    
+    # Build Command:
+    # 1. Install client deps and build React app
+    # 2. Install server deps
+    # 3. Create public directory in server
+    # 4. Copy built client assets (dist) to server/public
+    buildCommand: |
+      cd client && npm install && npm run build && cd ../server && npm install && mkdir -p public && cp -r ../client/dist/* ./public/
+
+    # Start Command:
+    # Run the server (which now serves the static files too)
+    startCommand: node server/server.js
+    
     plan: free
     envVars:
       - key: PORT
         value: 10000
       - key: MONGO_URI
-        sync: false # You will be asked to enter this value in the Render Dashboard
+        sync: false
       - key: JWT_SECRET
-        generateValue: true # Generates a secure random string automatically
+        generateValue: true
       - key: ADMIN_EMAIL
         value: admin@siteclock.com
       - key: ADMIN_PASSWORD
-        sync: false # You will be asked to enter this value in the Render Dashboard
-
-  # --------------------------------------------------------------------------------
-  # FRONTEND SERVICE (React/Vite)
-  # --------------------------------------------------------------------------------
-  - type: static
-    name: site-clock-client
-    env: static
-    root: client
-    buildCommand: npm install && npm run build
-    publishDir: dist
-    routes:
-      # This rule is required for React Router (SPA) to work correctly
-      - type: rewrite
-        source: /**
-        destination: /index.html
-    envVars:
-      # Automatically links the Server URL to the Client
-      - key: VITE_API_URL
-        fromService:
-          type: web
-          name: site-clock-server
-          property: url
+        sync: false
+      - key: NODE_ENV
+        value: production
+      # Important: Point the Client's API calls to the same origin (relative path)
+      # or explicitly set it if needed. Since we are serving from the same domain,
+      # relative paths in Axios would work, or we default to the current URL.
+      # But since the build process runs in the build environment, we need to ensure
+      # the client knows where to look.
+      # If VITE_API_URL is empty, we should ensure the client connects to /api
