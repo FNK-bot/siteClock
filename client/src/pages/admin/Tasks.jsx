@@ -45,14 +45,14 @@ const Tasks = () => {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-black text-gray-900 mb-2">Task Management</h1>
                     <p className="text-gray-500">Schedule and manage site tasks</p>
                 </div>
                 <button
                     onClick={() => setShowCreateModal(true)}
-                    className="flex items-center gap-2 px-6 py-3 bg-black text-white font-bold rounded-2xl shadow-lg hover:bg-gray-800 hover:shadow-xl transform active:scale-95 transition-all"
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-black text-white font-bold rounded-2xl shadow-lg hover:bg-gray-800 hover:shadow-xl transform active:scale-95 transition-all w-full md:w-auto"
                 >
                     <Plus size={20} />
                     <span>New Task</span>

@@ -13,7 +13,7 @@ services:
     # 3. Create public directory in server
     # 4. Copy built client assets (dist) to server/public
     buildCommand: |
-      cd client && npm install && npm run build && cd ../server && npm install && mkdir -p public && cp -r ../client/dist/* ./public/
+      cd client && npm install --include=dev && npm run build && cd ../server && npm install && mkdir -p public && cp -r ../client/dist/* ./public/
 
     # Start Command:
     # Run the server (which now serves the static files too)
